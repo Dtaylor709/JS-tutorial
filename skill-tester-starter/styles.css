@@ -1,0 +1,37 @@
+body {
+    background-color: #d8dcd6;
+    font-family: sans-serif;
+    color: #000133;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.dark {
+    background-color: #000133 !important;
+    color: #fff !important;
+}
+
+#start-button {
+    width: 100%;
+    padding: 10px;
+    font-size: 1.5rem;
+    background-color: #fc86aa;
+    color: #000133;
+}
+
+#color-box {
+    height: 250px;
+    width: 100%;
+    margin-top: 10px;
+}
+
+input[type="button"] {
+    display: block;
+    border: none;
+}
+
+input[type="button"]:hover {
+    box-shadow: 0px 0px 5px #000133;
+}
