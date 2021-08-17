@@ -15,3 +15,5 @@ window.onload = function () {
     let outputElement = document.getElementById("output");
     outputElement.appendChild(speechBubbleElement);
        };
+
+        
