@@ -51,4 +51,16 @@ input[type="button"] {
 
 .complete {
     text-decoration: line-through;
+    background: green;
+    color: white;
+}
+
+.incomplete {
+    background-color: red;
+    color: white;
+}
+
+img {
+    width: 10%;
+    height: 10%;
 }
