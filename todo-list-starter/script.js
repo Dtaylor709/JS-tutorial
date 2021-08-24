@@ -12,7 +12,7 @@ updateTodoList();
 
 
 
-function addTodoItem() { 
+function addTodoItem() {
     let newTask = document.getElementById('new-task-text');
     let newDate = document.getElementById('new-task-date');
     if (newTask.value && newDate.value) {
@@ -30,14 +30,14 @@ function updateTodoList() {
     let todoListElement = document.getElementById('todo-list');
     todoListElement.innerHTML = '';
 
-// for each task in the todoTasksText list:
+    // for each task in the todoTasksText list:
     todoTasksText.forEach((task, index) => {
-    let newTodoItemElement = createNewTodoItemElement(task, index);
-    todoListElement.appendChild(newTodoItemElement);
-    console.log(document.querySelectorAll("li"))
-});
+        let newTodoItemElement = createNewTodoItemElement(task, index);
+        todoListElement.appendChild(newTodoItemElement);
+        console.log(document.querySelectorAll("li"))
+    });
 }
- 
+
 
 function createNewTodoItemElement(task, index) {
     console.log(task, index);
@@ -45,7 +45,7 @@ function createNewTodoItemElement(task, index) {
     let paragraph = document.createElement('p');
     //      set the inner text of the paragraph to the task text
     paragraph.innerText = task;
-  
+
     //      create a new list item (<li>) element
     let listItem = document.createElement('li');
     if (todoTasksStatus[index] == true) {
@@ -58,31 +58,54 @@ function createNewTodoItemElement(task, index) {
     listItem.appendChild(paragraph);
     console.log(listItem);
 
+
     let up = document.createElement('input');
     up.type = 'button';
     up.value = 'UP';
     up.id = task;
-    
+
 
     up.onclick = function () {
         console.log(document.getElementById(task).parentElement);
         console.log(task);
-//         get position of clicked item
-//         var idx = todoTasksText.indexOf(element);
+        //         get position of clicked item
+        //         var idx = todoTasksText.indexOf(element);
         todoTasksText.indexOf(task);
-// // figure out position of previous item (will be clicked position - 1)
+        // // figure out position of previous item (will be clicked position - 1)
         let taskPosition = todoTasksText.indexOf(task);
         let abovePosition = taskPosition - 1;
-
-// // swap the items
-        var b = todoTasksText[taskPosition];
+        // // swap the items
+        var u = todoTasksText[taskPosition];
         todoTasksText[taskPosition] = todoTasksText[abovePosition];
-        todoTasksText[abovePosition] = b;
-    // update the screen
+        todoTasksText[abovePosition] = u;
+        // update the screen
         updateTodoList();
     }
-    listItem.appendChild(up)
-    
+    if (index >= 1) {
+        listItem.appendChild(up)
+    }
+
+    let down = document.createElement('input');
+    down.type = 'button';
+    down.value = 'DOWN';
+    down.id = task;
+
+    down.onclick = function () {
+        todoTasksText.indexOf(task);
+        let taskPosition = todoTasksText.indexOf(task);
+        let downPosition = taskPosition + 1;
+
+        var d = todoTasksText[taskPosition];
+        todoTasksText[taskPosition] = todoTasksText[downPosition];
+        todoTasksText[downPosition] = d;
+        // update the screen
+        updateTodoList();
+    }
+    if (index < todoTasksText.length - 1) {
+        listItem.appendChild(down)
+    }
+
+
     let completeButtonElement = document.createElement('input');
     completeButtonElement.type = 'button';
     completeButtonElement.value = 'completed';
@@ -102,11 +125,11 @@ function createNewTodoItemElement(task, index) {
         importantPic.src = 'https://img.resized.co/entertainment/eyJkYXRhIjoie1widXJsXCI6XCJodHRwOlxcXC9cXFwvczMtZXUtd2VzdC0xLmFtYXpvbmF3cy5jb21cXFwvZW50ZXJ0YWlubWVudGllXFxcL3N0b3JhZ2VcXFwvaW1hZ2VzX2NvbnRlbnRcXFwvcmVjdGFuZ2xlXFxcLzYyMHgzNzJcXFwvU2NyZWVuLVNob3QtMjAxNi0wOS0xMC1hdC0xNzU5MzgucG5nXCIsXCJ3aWR0aFwiOjEyMDAsXCJoZWlnaHRcIjo2MzAsXCJkZWZhdWx0XCI6XCJodHRwczpcXFwvXFxcL2VudGVydGFpbm1lbnQuaWVcXFwvaW1hZ2VzXFxcL25vLWltYWdlLnBuZ1wifSIsImhhc2giOiJkYjJjMWVlNmI1ZDIyYzRjZGE4ZTQ5MDk4ODZiYWMxZjZlNmNiNzRkIn0=/pic-this-picture-of-terry-crews-can-help-save-you-money.png'
         listItem.appendChild(importantPic)
     }
-    
+
     let dateElement = document.createElement('p');
     dateElement.innerText = todoDates[index];
     listItem.appendChild(dateElement);
-    
+
     listItem.appendChild(completeButtonElement);
 
 
