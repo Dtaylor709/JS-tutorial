@@ -34,6 +34,7 @@ function updateTodoList() {
     todoTasksText.forEach((task, index) => {
     let newTodoItemElement = createNewTodoItemElement(task, index);
     todoListElement.appendChild(newTodoItemElement);
+    console.log(document.querySelectorAll("li"))
 });
 }
  
@@ -57,6 +58,31 @@ function createNewTodoItemElement(task, index) {
     listItem.appendChild(paragraph);
     console.log(listItem);
 
+    let up = document.createElement('input');
+    up.type = 'button';
+    up.value = 'UP';
+    up.id = task;
+    
+
+    up.onclick = function () {
+        console.log(document.getElementById(task).parentElement);
+        console.log(task);
+//         get position of clicked item
+//         var idx = todoTasksText.indexOf(element);
+        todoTasksText.indexOf(task);
+// // figure out position of previous item (will be clicked position - 1)
+        let taskPosition = todoTasksText.indexOf(task);
+        let abovePosition = taskPosition - 1;
+
+// // swap the items
+        var b = todoTasksText[taskPosition];
+        todoTasksText[taskPosition] = todoTasksText[abovePosition];
+        todoTasksText[abovePosition] = b;
+    // update the screen
+        updateTodoList();
+    }
+    listItem.appendChild(up)
+    
     let completeButtonElement = document.createElement('input');
     completeButtonElement.type = 'button';
     completeButtonElement.value = 'completed';
@@ -107,3 +133,4 @@ function markImportant(index) {
     console.log(important);
     updateTodoList();
 }
+
